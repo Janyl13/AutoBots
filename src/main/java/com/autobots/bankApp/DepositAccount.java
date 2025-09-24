@@ -20,4 +20,15 @@ public class DepositAccount extends BankAccount{
         }
         return false;
     }
+
+    @Override
+    public String toString() {
+        return "DepositAccount{" +
+                "accountNumber='" + accountNumber + '\'' +
+                ", balance=" + balance +
+                ", owner=" + owner +
+                ", currency=" + currency +
+                ", transactions=" + transactions +
+                '}';
+    }
 }

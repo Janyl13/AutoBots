@@ -24,25 +24,25 @@ public class StreamAPILesson {
 //        System.out.println(result);
 
 
-        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
-        int r1 = 0;
-        for (int num : numbers) {
-            r1 += num;
-        }
-        System.out.println(r1);
-
-        int totalSum = numbers.stream()
-                .mapToInt(num -> num)
-                .sum();
-        System.out.println(totalSum);
-
-        int totalElements = (int) numbers.stream()
-                .count();
-        System.out.println(totalElements);
-
-        numbers.stream()
-                .min(Integer::compareTo)
-                .ifPresent(System.out::println);
+//        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+//        int r1 = 0;
+//        for (int num : numbers) {
+//            r1 += num;
+//        }
+//        System.out.println(r1);
+//
+//        int totalSum = numbers.stream()
+//                .mapToInt(num -> num)
+//                .sum();
+//        System.out.println(totalSum);
+//
+//        int totalElements = (int) numbers.stream()
+//                .count();
+//        System.out.println(totalElements);
+//
+//        numbers.stream()
+//                .min(Integer::compareTo)
+//                .ifPresent(System.out::println);
 
         // оператор :: в Java называется method reference - это сокращенная форма записи лямбда-выражений,
         // когда ты просто передаешь существующий метод как фукнцию.
@@ -55,52 +55,51 @@ public class StreamAPILesson {
 //                .ifPresent(System.out::println);
 
 
-        List<Employee> employees = List.of(
-                new Employee(1, "Alice", 28, 3000, "IT"),
-                new Employee(2, "Bob", 35, 4000, "HR"),
-                new Employee(3, "Charlie", 40, 5000, "Finance"),
-                new Employee(4, "David", 25, 3500, "IT"),
-                new Employee(5, "Eva", 30, 4200, "Marketing"),
-                new Employee(6, "Frank", 45, 6000, "Finance"),
-                new Employee(7, "Grace", 32, 4100, "HR"),
-                new Employee(8, "Henry", 29, 3900, "IT"),
-                new Employee(9, "Isabel", 38, 4500, "Marketing"),
-                new Employee(10, "Jack", 27, 3600, "IT")
-        );
-
-        List<Employee> itEmployees = employees.stream()
-                .filter(s -> s.getDepartment().equals("IT"))
-                .collect(Collectors.toList());
-        System.out.println(itEmployees);
-
-        List<Employee> itEmployees2 = new ArrayList<>();
-        for (Employee employee : employees){
-            if (employee.getDepartment().equalsIgnoreCase( "IT")){
-                itEmployees2.add(employee);
-            }
-        }
-        System.out.println(itEmployees2);
-
-        Map<String, List<Employee>> employeeByDepartment = employees.stream()
-                .collect(Collectors.groupingBy(Employee::getDepartment));
-
-        employeeByDepartment.forEach((department, list) -> {
-            System.out.println("Отдел " + department);
-            list.forEach(System.out::println);
-        });
-
-        Map<String, List<Employee>> employeeByDepartment2 = new HashMap<>();
-
-        for (Employee employee : employees) {
-            employeeByDepartment2.putIfAbsent(employee.getDepartment(), new ArrayList<>());
-            employeeByDepartment2.get(employee.getDepartment()).add(employee);
-
-        }
-
-        for (Map.Entry<String, List<Employee>> entry: employeeByDepartment2.entrySet()){
-            System.out.println(entry.getKey() + "\n" + entry.getValue());
-        }
-        System.out.println(employeeByDepartment2);
+//        List<Employee> employees = List.of(
+//                new Employee(1, "Alice", 28, 3000, "IT"),
+//                new Employee(2, "Bob", 35, 4000, "HR"),
+//                new Employee(3, "Charlie", 40, 5000, "Finance"),
+//                new Employee(4, "David", 25, 3500, "IT"),
+//                new Employee(5, "Eva", 30, 4200, "Marketing"),
+//                new Employee(6, "Frank", 45, 6000, "Finance"),
+//                new Employee(7, "Grace", 32, 4100, "HR"),
+//                new Employee(8, "Henry", 29, 3900, "IT"),
+//                new Employee(9, "Isabel", 38, 4500, "Marketing"),
+//                new Employee(10, "Jack", 27, 3600, "IT")
+//        );
+////1
+//        List<Employee> itEmployees = employees.stream()
+//                .filter(s -> s.getDepartment().equals("IT"))
+//                .collect(Collectors.toList());
+//        System.out.println(itEmployees);
+////2
+//        List<Employee> itEmployees2 = new ArrayList<>();
+//        for (Employee employee : employees){
+//            if (employee.getDepartment().equalsIgnoreCase( "IT")){
+//                itEmployees2.add(employee);
+//            }
+//        }
+//        System.out.println(itEmployees2);
+////1
+//        Map<String, List<Employee>> employeeByDepartment = employees.stream()
+//                .collect(Collectors.groupingBy(Employee::getDepartment));
+//        employeeByDepartment.forEach((department, list) -> {
+//            System.out.println("Отдел " + department);
+//            list.forEach(System.out::println);
+//        });
+////2
+//        Map<String, List<Employee>> employeeByDepartment2 = new HashMap<>();
+//
+//        for (Employee employee : employees) {
+//            employeeByDepartment2.putIfAbsent(employee.getDepartment(), new ArrayList<>());
+//            employeeByDepartment2.get(employee.getDepartment()).add(employee);
+//
+//        }
+//
+//        for (Map.Entry<String, List<Employee>> entry: employeeByDepartment2.entrySet()){
+//            System.out.println(entry.getKey() + "\n" + entry.getValue());
+//        }
+//        System.out.println(employeeByDepartment2);
 
 
     }

@@ -1,4 +1,4 @@
 package com.autobots.weekdays;
 
-public class Monday {
+public class Monday  {
 }

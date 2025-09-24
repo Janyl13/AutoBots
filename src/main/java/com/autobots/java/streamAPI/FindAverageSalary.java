@@ -3,8 +3,12 @@ package com.autobots.java.streamAPI;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class FindAverageSalary {
+    public static void main(String[] args) {
+
+
     List<Employee> employees = List.of(
             new Employee(1, "Alice", 28, 3000, "IT"),
             new Employee(2, "Bob", 35, 4000, "HR"),
@@ -19,5 +23,31 @@ public class FindAverageSalary {
     );
 
     Map<String, Double> averageSalaryByDep = new HashMap<>();
-    
+    Map<String, Integer> averageByDep = new HashMap<>();
+    int count = 0;
+    for(Employee employee :employees)
+    {
+        averageSalaryByDep.put(employee.getDepartment(),
+                averageSalaryByDep.getOrDefault(employee.getDepartment(), 0.0)
+                        + employee.getSalary());
+        averageByDep.put(employee.getDepartment(),
+                averageByDep.getOrDefault(employee.getDepartment(),0) +1);
+    }
+    double averageSal = 0.0;
+
+    for (String dep : averageSalaryByDep.keySet()) {
+        averageSal = averageSalaryByDep.get(dep) / averageByDep.get(dep);
+        System.out.printf("%s -> $%.2f%n", dep, averageSal);
+    }
+        System.out.println("_________________________");
+
+    Map<String, Double> averageSalaryByDepWithStream = employees.stream()
+            .collect(Collectors.groupingBy(Employee :: getDepartment,
+                    Collectors.averagingDouble(Employee :: getSalary)));
+
+    averageSalaryByDepWithStream.forEach((dep, averSalary) ->
+            System.out.println(dep + " -> " + averSalary + " $"));
+}
+
+
 }

@@ -32,6 +32,8 @@ public class Client {
         return clientID;
     }
 
+    public String getPin() {return pin;}
+
     public List<BankAccount> getAccounts(){
         return accounts;
     }
